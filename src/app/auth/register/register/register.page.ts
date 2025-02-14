@@ -58,8 +58,8 @@ export class RegisterPage implements OnInit {
 
     try {
       await this.api.post('wp-json/jwt-auth/v1/token', {
-        username:'adminflamma',
-        password:'V$ZI95xywOEyHA9dvfCzolBk'
+        username:'admin',
+        password:'Roccap2024**'
       }).then(async(resp: any) => {
         if(resp.token){
           this.tokenRegister = resp.token;

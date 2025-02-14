@@ -12,8 +12,8 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 export class ApiService {
 
 	private apiUrl: string = 'https://tandemclass.com';
-  private apiKey: string = 'key_1c52269138465ce17e0c200baa6663a9'
-  private apiSecret: string = 'secret_f5a83686f110d6b096f0f0ef4d88dae83f9206b0ac06be14c83365ae035d6280'
+  private apiKey: string = 'key_a80c9ae7ee184a934180183391da3b93'
+  private apiSecret: string = 'secret_c94bd3ec7a7009f0d42c6ec9ab8c64aa374b8adf6cb14bdbae9313a44de7ff50'
 
   constructor(
     private http:HttpClient,
