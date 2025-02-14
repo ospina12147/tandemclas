@@ -1,0 +1,43 @@
+<ion-toolbar color="primary">
+  <ion-title>Notificaciones</ion-title>
+</ion-toolbar>
+<ion-content [fullscreen]="true" color="primary" *ngIf="notificationHistory.length > 0">
+  <ion-list [inset]="true" color="primary" class="listOrderHistory">
+      <ion-card *ngFor="let notification of notificationHistory; let i = index" class="card-style" color="light">
+          <ion-item color="light">
+            <ion-label class="jost-font" style="font-size: 18px !important;">
+              <b>{{notification?.content}}</b>
+            </ion-label>
+          </ion-item>
+          <ion-item color="light" style="padding-bottom: 5px;">
+            <ion-text>
+              <span style="font-size: 15px;"><b class="jost-font" style="text-align: justify !important;">{{notification?.created_at}}</b></span><br><br>
+              <span *ngIf="notification.status == 'READ'" class="span-info-order" style="background: #ff6600;"> Leido</span>
+              <span *ngIf="notification.status != 'READ'" class="span-info-order" style="background: #eb445a;"> No leido</span>
+              <br>
+              <br>
+          </ion-text>
+          </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
+
+<ion-content [fullscreen]="true" color="primary" *ngIf="notificationHistory.length == 0">
+  <div style="padding-top: 200px; text-align: center;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+        </ion-col>
+        <ion-col size="6">
+          <ion-icon name="file-tray" style="font-size: 90px;" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col size="3">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-text style="padding: 5px 20px;">
+      <h1><b>No hay compras</b></h1>
+      <p >No has realizado ninguna compra de algun curso</p>
+    </ion-text>
+  </div>
+</ion-content>

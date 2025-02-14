@@ -1,0 +1,18 @@
+<ion-header [translucent]="true" color="primary">
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon (click)="closeModal()" name="arrow-back" size="large" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col style="padding: 0px !important;">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <iframe *ngIf="dataUrlPage" class="buyCourse" [src]="dataUrlPage | safeUrl">
+  </iframe>
+</ion-content>

@@ -1,0 +1,24 @@
+#file-input {
+    display: none;
+  }
+  
+  /* Estilo para el botón personalizado */
+  .custom-file-button {
+    background-color: #ff6600; /* Color del botón "Enviar tarea" */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px; /* Igual al botón "Enviar tarea" */
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombras similares */
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-file-button:hover {
+    background-color: #e65500; /* Efecto hover */
+  }

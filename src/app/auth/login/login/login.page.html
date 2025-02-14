@@ -1,0 +1,99 @@
+<ion-content class="ion-padding" color="primary">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size-sm="6" size-md="6" size-lg="6">
+        <form [formGroup]="form" (ngSubmit)="login($event)">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="10" style="background: black;">
+              <img width="100%" src="/assets/logo_tandem.png" />
+            </ion-col>
+            <br>
+            <ion-text color="dark" style="margin-top: 30px !important;">
+              <h4><b class="jost-font" style="font-size: 24px !important;">¡Inicia sesión!</b></h4>
+              <p style="font-size: 12px;">Incicia sesión en tu cuenta para continuar con tus cursos</p>
+            </ion-text>
+          </ion-row>
+
+              <ion-row class="ion-justify-content-center ion-no-padding">
+                <ion-col size="12">
+                  <ion-list class="ion-margin-vertical" lines="full">
+                    <!--<label for="email" style="color: white;">Nombre de usuario o correo</label>-->
+                    <ion-item>
+                      <ion-icon name="mail-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input type="text" formControlName="username" placeholder="Correo electronico" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--<label for="email" style="color: white;">Contraseña</label>-->
+                    <ion-item>
+                      <ion-icon name="lock-closed-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input type="password" formControlName="password" placeholder="Contraseña" required>
+                      </ion-input>
+                    </ion-item>
+                    <ion-row>
+                      <ion-col size="5">
+                        <ion-checkbox formControlName="rememberPass" labelPlacement="end" style="font-size: 13px; margin-top: 2px !important;">Recuérdame</ion-checkbox>
+                      </ion-col>
+                    </ion-row>
+                    <br>
+                    <ion-label (click)="showRememberPassword()" style="font-size: 13px;">¿Olvidaste tu contraseña?</ion-label>
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-button type="submit" expand="block" shape="round" [disabled]="form.invalid || flagButton " color="warning" class="text-capitalize jost-font custom-button" style="font-size: 18px;">
+                    <span class="text">Inicia sesión</span>
+                      <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+                  </ion-button>
+                <!--
+                  <ion-button (click)="goToRegisterD()" expand="block">
+                    <div>
+                      <ion-icon name="log-in" slot="start"></ion-icon>
+                      registrar
+                    </div>
+                    <ion-spinner *ngIf="loaderRequest"></ion-spinner>
+                  </ion-button>
+                -->
+                </ion-col>
+              </ion-row>
+
+              <ion-text color="dark" style="text-align: center;">
+                <p style="font-size: 14px;">No tienes una cuenta todavia?<a (click)="goToRegisterD()" style="color: #ff6600 !important;"> registrate</a></p>
+              </ion-text>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="isModalOpen" color="primary">
+    <ng-template color="primary">
+      <ion-content class="ion-padding" color="primary">
+        <ion-text style="text-align: center;">
+          <ion-title style="margin-top: 250px;">
+            <b>{{titleModalFirsTime}}</b>
+          </ion-title>
+          <p style="text-align: center;">
+            {{textModalFirsTime}}
+          </p>
+        </ion-text>
+      </ion-content>
+      <ion-footer class="ion-no-border" color="primary" style="background-color: #e2e2e2;">
+        <ion-item color="primary">
+          <ion-icon name="ellipse" *ngIf="(pagModalFirstTime != 0)" (click)="pageModalFirstTime(0)" color="medium"></ion-icon>
+          <ion-icon name="ellipse" *ngIf="(pagModalFirstTime == 0)" color="warning"></ion-icon>
+          <ion-icon name="ellipse" *ngIf="(pagModalFirstTime != 1)" (click)="pageModalFirstTime(1)" color="medium"></ion-icon>
+          <ion-icon name="ellipse" *ngIf="(pagModalFirstTime == 1)" color="warning"></ion-icon>
+          <ion-icon name="ellipse" *ngIf="(pagModalFirstTime != 2)" (click)="pageModalFirstTime(2)" color="medium"></ion-icon>
+          <ion-icon name="ellipse" *ngIf="(pagModalFirstTime == 2)" color="warning"></ion-icon>
+          <ion-button *ngIf="pagModalFirstTime == 2" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;" class="text-capitalize" (click)="openModalFirstTime(false)">
+            Comenzar
+            <ion-icon size="large" style="margin-left: 10px;" name="arrow-forward-circle"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="pagModalFirstTime != 2" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;" (click)="nextPageModalFirstTime()">
+            <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-footer>
+    </ng-template>
+  </ion-modal>
+</ion-content>

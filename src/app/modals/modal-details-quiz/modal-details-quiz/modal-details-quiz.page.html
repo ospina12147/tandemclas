@@ -1,0 +1,64 @@
+<ion-header [translucent]="true" color="primary">
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon (click)="closeModal()" name="chevron-back-sharp" size="large" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col style="padding: 0px !important;">
+          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding-laterals" color="primary">
+  <ion-grid class="margin-background" *ngFor="let answer of listAnswers;">
+    <ion-row nowrap class="forecast_container">
+      <ion-col class="font-list-courses title-course" >
+          <ion-card-header class="card-courses-list">
+            <ion-card-subtitle color="secondary">{{answer?.question_details?.question_title}}</ion-card-subtitle>
+          </ion-card-header>
+      </ion-col>
+
+      <ion-col class="font-list-courses complete-course">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'true_false'">Falso o verdadero</ion-card-subtitle>
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'single_choice'">Opción unica</ion-card-subtitle>
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'multiple_choice'">Opción multiple</ion-card-subtitle>
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'open_ended'">Pregunta abierta</ion-card-subtitle>
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'ordering'">Ordenamiento</ion-card-subtitle>
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'short_answer'">Respuesta corta</ion-card-subtitle>
+            <ion-card-subtitle color="secondary" *ngIf="answer?.question_details?.question_type == 'fill_in_the_blank'">Rellenar espacios</ion-card-subtitle>
+          </ion-card-header>
+      </ion-col>
+
+      <ion-col class="font-list-courses complete-course-data">
+        <ion-card-header class="card-courses-list card-list-center">
+          <ion-card-subtitle color="light" *ngIf="answer?.is_correct == 0"><span style="background-color: #eb445a; border-radius: 10px; padding: 5px;">Incorrecto</span></ion-card-subtitle>
+          <ion-card-subtitle color="light" *ngIf="answer?.is_correct == 1"><span style="background-color: #84e604; border-radius: 10px; padding: 5px;">Correcto</span></ion-card-subtitle>
+          <ion-card-subtitle color="light" *ngIf="answer?.is_correct == null"><span style="background-color: #e69704; border-radius: 10px; padding: 5px;">Pendiente</span></ion-card-subtitle>
+        </ion-card-header>
+      </ion-col>
+
+      <!--
+      <ion-col class="font-list-courses duration-course">
+        <ion-card color="secondary" class="card-list-courses">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle>23h 15m</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="font-list-courses instructor-course">
+        <ion-card color="secondary" class="card-list-courses">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle>Flamma NXT</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    -->
+    </ion-row>
+  </ion-grid>
+</ion-content>

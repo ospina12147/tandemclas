@@ -1,0 +1,294 @@
+<ion-header [translucent]="true" color="primary">
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon (click)="closeModal()" name="chevron-back-sharp" size="large" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col style="padding: 0px !important;">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+  <!-- Seccion de pregunta falso o verdadero -->
+  <ion-content class="ion-padding" [fullscreen]="true" color="primary"  *ngIf="question.question_type == 'true_false' && endQuiz == false">
+    <div style="padding: 10px;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-text>
+              <b>Falso o verdadero</b>
+            </ion-text>
+          </ion-col>
+          <ion-col size="4">
+            Pregunta: {{numberQuestion+1}}/{{questionsData.length}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br>
+      <ion-text>
+        {{numberQuestion+1}}. {{question.question_title}}
+      </ion-text>
+      <br>
+      <br>
+    <form #form="ngForm" (ngSubmit)="submitForm(form, question.question_type, question.question_id)">
+
+        <ion-radio-group ngModel name="responseAnswer" id="responseAnswer">
+        <ng-content  *ngFor="let questionData of question.question_answers; let i = index">
+          <ion-item color="tertiary" class="optionsSlect">
+            <ion-radio [value]="questionData.answer_id" color="warning" justify="space-between">{{questionData.answer_title}}</ion-radio><br>
+          </ion-item>
+        </ng-content >
+        </ion-radio-group>
+
+    <ion-footer class="ion-no-border" color="primary" style="background-color: #000000; position:absolute !important; right: 0 !important; bottom: 0 !important;">
+      <ion-item color="primary">
+        <ion-button *ngIf="this.questionsData[this.numberQuestion - 1]" (click)="previousQuestion()" size="large" color="warning" shape="round" style="font-size: 14px;">
+          <ion-icon size="large" name="arrow-back-circle"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+          <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+          Finalizar
+        </ion-button>
+      </ion-item>
+    </ion-footer>
+  </form>
+</div>
+  </ion-content>
+
+  <!-- Seccion de pregunta unica opcion -->
+  <ion-content class="ion-padding" [fullscreen]="true" color="primary"  *ngIf="question.question_type == 'single_choice' && endQuiz == false">
+    <div style="padding: 10px;">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="8">
+              <ion-text>
+                <b>Unica opción</b>
+              </ion-text>
+            </ion-col>
+            <ion-col size="4">
+              Pregunta: {{numberQuestion+1}}/{{questionsData.length}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <br>
+        <ion-text>
+          {{numberQuestion+1}}. {{question.question_title}}
+        </ion-text>
+        <br>
+        <br>
+    <form #form="ngForm" (ngSubmit)="submitForm(form, question.question_type, question.question_id)">
+
+        <ion-radio-group ngModel name="responseAnswer" id="responseAnswer">
+        <ng-content *ngFor="let questionData of question.question_answers; let i = index">
+          <ion-item color="tertiary" class="optionsSlect">
+            <ion-radio [value]="questionData.answer_id" color="warning" justify="space-between">{{questionData.answer_title}}</ion-radio><br>
+          </ion-item>
+        </ng-content >
+        </ion-radio-group>
+
+    <ion-footer class="ion-no-border" color="primary" style="background-color: #000000; position:absolute !important; right: 0 !important; bottom: 0 !important;">
+      <ion-item color="primary">
+        <ion-button *ngIf="this.questionsData[this.numberQuestion - 1]" (click)="previousQuestion()" size="large" color="warning" shape="round" style="font-size: 14px;">
+          <ion-icon size="large" name="arrow-back-circle"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+          <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+          Finalizar
+        </ion-button>
+      </ion-item>
+    </ion-footer>
+  </form>
+</div>
+  </ion-content>
+
+  <!-- Seccion de pregunta multiple opcion -->
+  <ion-content class="ion-padding" [fullscreen]="true" color="primary"  *ngIf="question.question_type == 'multiple_choice' && endQuiz == false">
+    <div style="padding: 10px;">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="8">
+              <ion-text>
+                <b>Opción multiple</b>
+              </ion-text>
+            </ion-col>
+            <ion-col size="4">
+              Pregunta: {{numberQuestion+1}}/{{questionsData.length}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <br>
+        <ion-text>
+          {{numberQuestion+1}}. {{question.question_title}}
+        </ion-text>
+        <br>
+        <br>
+      <form [formGroup]="form" (ngSubmit)="submitFormMultipleChoice($event, question.question_type, question.question_id)">
+        <ion-checkbox-group formControlName="multipleChoice">
+          <ng-content *ngFor="let questionData of question.question_answers; let i = index">
+            <ion-item color="tertiary" class="optionsSlect">
+            <ion-checkbox [formControl]="multipleChoice.controls[i]" value="Option1">{{questionData.answer_title}}</ion-checkbox><br>
+          </ion-item>
+          </ng-content >
+        </ion-checkbox-group>
+  
+    <ion-footer class="ion-no-border" color="primary" style="background-color: #000000; position:absolute !important; right: 0 !important; bottom: 0 !important;">
+      <ion-item color="primary">
+        <ion-button *ngIf="this.questionsData[this.numberQuestion - 1]" (click)="previousQuestion()" size="large" color="warning" shape="round" style="font-size: 14px;">
+          <ion-icon size="large" name="arrow-back-circle"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+          <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+          Finalizar
+        </ion-button>
+      </ion-item>
+    </ion-footer>
+  </form>
+</div>
+  </ion-content>
+  
+  <!-- Seccion de pregunta abierta -->
+  <ion-content class="ion-padding" [fullscreen]="true" color="primary"  *ngIf="(question.question_type == 'open_ended' || question.question_type == 'short_answer') && endQuiz == false">
+    <div style="padding: 10px;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-text>
+              <b>Pregunta abierta</b>
+            </ion-text>
+          </ion-col>
+          <ion-col size="4">
+            Pregunta: {{numberQuestion+1}}/{{questionsData.length}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br> 
+      <ion-text>
+        {{numberQuestion+1}}. {{question.question_title}}
+      </ion-text> 
+      <br>
+      <br>
+  <form #form="ngForm" (ngSubmit)="submitForm(form, question.question_type, question.question_id)">
+    <ion-item color="tertiary">
+      <ion-input type="text" ngModel name="responseAnswer" id="responseAnswer"></ion-input>
+    </ion-item>
+  <ion-footer class="ion-no-border" color="primary" style="background-color: #000000; position:absolute !important; right: 0 !important; bottom: 0 !important;">
+    <ion-item color="primary">
+      <ion-button *ngIf="this.questionsData[this.numberQuestion - 1]" (click)="previousQuestion()" size="large" color="warning" shape="round" style="font-size: 14px;">
+        <ion-icon size="large" name="arrow-back-circle"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+        <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+        Finalizar
+      </ion-button>
+    </ion-item>
+  </ion-footer>
+</form>
+</div>
+</ion-content>
+
+  <!-- Seccion de pregunta de ordenamiento -->
+  <ion-content class="ion-padding" [fullscreen]="true" color="primary"  *ngIf="question.question_type == 'ordering' && endQuiz == false">
+    <div style="padding: 10px;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-text>
+              <b>Ordenamiento</b>
+            </ion-text>
+          </ion-col>
+          <ion-col size="4">
+            Pregunta: {{numberQuestion+1}}/{{questionsData.length}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br>
+      <ion-text>
+        {{numberQuestion+1}}. {{question.question_title}}
+      </ion-text> 
+      <br>
+      <br>
+  <form #form="ngForm" (ngSubmit)="submitForm(form, question.question_type, question.question_id)">
+    
+    <ion-list color="primary">
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+        <ion-reorder *ngFor="let questionData of question.question_answers; let i = index">
+          <ion-item color="tertiary" class="optionsSlect">
+            <ion-label> {{questionData.answer_title}} </ion-label>
+          </ion-item>
+        </ion-reorder>
+  
+      </ion-reorder-group>
+    </ion-list>
+  
+  <ion-footer class="ion-no-border" color="primary" style="background-color: #000000; position:absolute !important; right: 0 !important; bottom: 0 !important;">
+    <ion-item color="primary">
+      <ion-button *ngIf="this.questionsData[this.numberQuestion - 1]" (click)="previousQuestion()" size="large" color="warning" shape="round" style="font-size: 14px;">
+        <ion-icon size="large" name="arrow-back-circle"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+        <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+        Finalizar
+      </ion-button>
+    </ion-item>
+  </ion-footer>
+</form>
+</div>
+</ion-content>
+
+<!-- Seccion de pregunta con rellenar espacios -->
+<ion-content class="ion-padding" [fullscreen]="true" color="primary"  *ngIf="question.question_type == 'fill_in_the_blank' && endQuiz == false">
+  <div style="padding: 10px;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">
+          <ion-text>
+            <b>Pregunta abierta</b>
+          </ion-text>
+        </ion-col>
+        <ion-col size="4">
+          Pregunta: {{numberQuestion+1}}/{{questionsData.length}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <br> 
+    <ion-text>
+      {{numberQuestion+1}}. {{question.question_title}}
+    </ion-text> 
+    <br>
+    <br>
+<form #form="ngForm" (ngSubmit)="submitFormFillBlank(form, question.question_type, question.question_id)">
+  <ion-list color="primary">
+    <ion-item color="tertiary" style="margin: 5px;" *ngFor="let questionData of question.question_answers.fillBlankAnswer; let i = index">
+      <ion-input type="text" ngModel [name]="'responseAnswer'+i" [id]="'responseAnswer'+i"></ion-input>
+    </ion-item>
+  </ion-list>
+<ion-footer class="ion-no-border" color="primary" style="background-color: #000000; position:absolute !important; right: 0 !important; bottom: 0 !important;">
+  <ion-item color="primary">
+    <ion-button *ngIf="this.questionsData[this.numberQuestion - 1]" (click)="previousQuestion()" size="large" color="warning" shape="round" style="font-size: 14px;">
+      <ion-icon size="large" name="arrow-back-circle"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+      <ion-icon size="large" name="arrow-forward-circle"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="!this.questionsData[this.numberQuestion + 1]" type="submit" size="large" slot="end" color="warning" shape="round" style="font-size: 14px;">
+      Finalizar
+    </ion-button>
+  </ion-item>
+</ion-footer>
+</form>
+</div>
+</ion-content>

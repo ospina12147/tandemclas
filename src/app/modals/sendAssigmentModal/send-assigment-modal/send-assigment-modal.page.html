@@ -1,0 +1,57 @@
+<ion-header [translucent]="true" color="primary">
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon (click)="closeModal()" name="chevron-back-sharp" size="large" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col style="padding: 0px !important;">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true" color="primary">
+  <br>
+  <ion-text style="text-align: justify;">
+    <span>Envia tu respuesta de la tarea, asegurate de confirmar antes de enviarla</span>
+  </ion-text>
+  <br>
+  <br>
+  <ion-item>
+    <ion-textarea class="font-size-text letra-cat" [(ngModel)]="text_assigment" [autoGrow]="true" maxlength="500">
+    </ion-textarea>
+  </ion-item>
+  <br>
+  <br>
+  <ion-text style="text-align: justify;">
+    <span>Puedes agregar un archivo a la tarea, este no debe superar los 2MB</span>
+  </ion-text>
+  <br>
+  <br>
+  <div class="file-upload-container">
+    <label for="file-input" class="custom-file-button">Subir archivo</label>
+    <input type="file" id="file-input" [(ngModel)]="selectedFile" (change)="onFileSelected($event)" />
+  </div>
+  <br>
+  <br>
+  <br>
+  
+  <ion-button expand="block" shape="round" color="warning" class="text-capitalize custom-button" style="margin: 0px 20px !important;" (click)="sendAssigment()">
+    <span class="text">Enviar tarea</span>
+    <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+  </ion-button>
+
+  <br>
+  <br>
+  
+  
+  
+  <!--
+  <ion-button expand="block" shape="round" color="warning" class="text-capitalize" style="margin: 0px 20px !important;" (click)="uploadFile()">
+    Subir archivo
+    <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+  </ion-button>
+-->
+</ion-content>

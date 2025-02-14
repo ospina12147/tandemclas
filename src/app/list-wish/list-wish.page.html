@@ -1,0 +1,42 @@
+<ion-toolbar color="primary">
+  <ion-title>Lista de deseos</ion-title>
+</ion-toolbar>
+<ion-content class="ion-padding" color="primary">
+  <ion-grid *ngFor="let course of wishList; let i = index">
+    <ion-row id="trigger+{{i}}">
+      <ion-col size="12">
+        <ion-card class="card-style" color="light">
+          <div class="contenedor-flexbox">
+            <div style="width:40%; display:inline-block;" class="conteiner-mg">
+              <img height="100%" class="img-size-rend" [src]="course.thumbnail_url" />
+            </div>
+            <div style="width:60%; display:inline-block;">
+              <ion-item color="light">
+                <ion-label style="color: #f08904; font-size: 12px;">
+                  {{course?.post_type}}
+                </ion-label>
+              </ion-item>
+              <ion-item color="light" style="margin-bottom: 5px;">
+                <ion-text>
+                  <span style="font-size: 15px;"><b class="jost-font" style="text-align: justify !important;">{{course?.post_title}}</b></span><br><br>
+                  <span style="font-size: 11px;"> {{course?.post_date}}</span>
+              </ion-text>
+              </ion-item>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-popover trigger="trigger+{{i}}" [dismissOnSelect]="true">
+      <ng-template>
+        <ion-content>
+          <ion-list>
+            <ion-item [button]="true" color="light" (click)="viewCourse(course)"><ion-icon name="eye" style="margin-right: 5px;"></ion-icon> Ver curso</ion-item>
+            <ion-item [button]="true" color="light" (click)="deleteWishList(course)"><ion-icon name="heart-dislike" style="margin-right: 5px;"></ion-icon> Eliminar de desados</ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </ion-grid>
+</ion-content>

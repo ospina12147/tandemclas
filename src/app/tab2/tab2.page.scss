@@ -1,0 +1,48 @@
+ion-grid, ion-row {
+	height: 100%;
+}
+
+ion-list {
+	background: transparent;
+}
+
+ion-item {
+	
+    margin-top: 5px !important;
+    margin-bottom: 20px !important;
+    --border-radius: 5px !important;
+
+	&.chkItem {
+		--border-width: 0;
+	}
+}
+
+.item-input-height{
+    font-size: 14px !important;
+}
+
+.centrar{
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+.font-size-text{
+    font-size: 14px;
+}
+
+ion-segment-button{
+    background: #e2e2e2 !important;
+    ion-label{
+        color: rgb(19, 19, 19) !important;
+    }
+}
+
+.profile-img{
+    border: 3px black solid !important;
+    width: 100px !important;
+    height: 100px !important;
+}
+

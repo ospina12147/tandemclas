@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-segment color="warning" value="matriculados" (ionChange)="onSegmentChange($event)" >
+    <ion-segment-button value="matriculados">
+      <ion-label color="light" class="text-capitalize font-size-14">matriculados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="activos">
+      <ion-label color="light" class="text-capitalize font-size-14">activos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completados">
+      <ion-label color="light" class="text-capitalize font-size-14">completados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content *ngIf="(segmentContent == 'matriculados')" class="ion-padding" color="primary">
+  <ion-grid *ngFor="let itemCourse of enrolled_courses; let i = index">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="card-style" color="light">
+          <div class="contenedor-flexbox">
+            <div style="width:40%; display:inline-block;" class="conteiner-mg" (click)="viewCourse(itemCourse)">
+              <img height="100%" class="img-size-rend" [src]="itemCourse?.thumbnail_url" />
+            </div>
+            <div style="width:60%; display:inline-block;">
+              <ion-item color="light" style="margin-bottom: 10px; margin-top: 10px;">
+                <ion-text (click)="viewCourse(itemCourse)">
+                  <span style="font-size: 15px;"><b class="jost-font" style="text-align: justify !important;">{{itemCourse?.post_title}}</b></span><br><br>
+                  <ion-progress-bar value="{{itemCourse.course_completed_percentage_decimal}}" color="warning"></ion-progress-bar>
+                  <span style="font-size: 15px;">{{itemCourse.course_completed_percentage}} Completo</span> <br>
+                  <span style="font-size: 11px;">  Fecha y hora de creacion: {{itemCourse.post_date}}</span>
+              </ion-text>
+              </ion-item>
+            </div>
+        </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="(segmentContent == 'activos')" class="ion-padding" color="primary">
+  <ion-grid *ngFor="let itemCourse of active_courses; let i = index">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="card-style" color="light">
+          <div class="contenedor-flexbox">
+            <div style="width:40%; display:inline-block;" class="conteiner-mg" (click)="viewCourse(itemCourse)">
+              <img height="100%" class="img-size-rend" [src]="itemCourse?.thumbnail_url" />
+            </div>
+            <div style="width:60%; display:inline-block;">
+              <ion-item color="light" style="margin-bottom: 10px; margin-top: 10px;">
+                <ion-text (click)="viewCourse(itemCourse)">
+                  <span style="font-size: 15px;"><b class="jost-font" style="text-align: justify !important;">{{itemCourse?.post_title}}</b></span><br><br>
+                  <ion-progress-bar value="{{itemCourse.course_completed_percentage_decimal}}" color="warning"></ion-progress-bar>
+                  <span style="font-size: 15px;">{{itemCourse.course_completed_percentage}} Completo</span> <br>
+                  <span style="font-size: 11px;">  Fecha y hora de creacion: {{itemCourse.post_date}}</span>
+              </ion-text>
+              </ion-item>
+            </div>
+        </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="(segmentContent == 'completados')" class="ion-padding" color="primary">
+  <ion-grid *ngFor="let itemCourse of completed_courses; let i = index">
+    <ion-row >
+      <ion-col size="12">
+        <ion-card class="card-style" color="light">
+          <div class="contenedor-flexbox">
+            <div style="width:40%; display:inline-block;" class="conteiner-mg">
+              <img height="100%" class="img-size-rend" [src]="itemCourse?.thumbnail_url" />
+            </div>
+            <div style="width:60%; display:inline-block;">
+              <ion-item color="light" style="margin-bottom: 10px; margin-top: 10px;">
+                <ion-text>
+                  <span style="font-size: 15px;"><b class="jost-font" style="text-align: justify !important;">{{itemCourse?.post_title}}</b></span><br><br>
+                  <!--<ion-progress-bar value="{{itemCourse.course_completed_percentage_decimal}}" color="warning"></ion-progress-bar>-->
+                  <span style="font-size: 11px;">  Fecha y hora de creacion: {{itemCourse.post_date}}</span>
+              </ion-text>
+              </ion-item>
+              <a style="color: f4f5f8; text-decoration: none;" [href]="itemCourse?.urlCertificate" [download]="itemCourse?.urlCertificate">
+              <ion-item color="light" style="padding: 0px !important;">
+                <ion-label style="font-size: 14px !important;">Descargar certificado</ion-label>
+                <ion-icon style="font-size: 14px !important;" name="download" color="warning" slot="end"></ion-icon>
+              </ion-item>
+            </a>
+            </div>
+        </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

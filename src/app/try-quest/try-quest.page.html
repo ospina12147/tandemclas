@@ -1,0 +1,67 @@
+<ion-toolbar color="primary">
+  <ion-title>Intentos de cuestionarios</ion-title>
+</ion-toolbar>
+<ion-content class="padding-laterals" color="primary" *ngIf="list_trys_quizes.length > 0">
+    <ion-grid class="margin-background" *ngFor="let quiz of list_trys_quizes;">
+      <ion-row nowrap class="forecast_container">
+        <ion-col class="font-list-courses title-course" >
+            <ion-card-header class="card-courses-list">
+              <ion-card-subtitle color="secondary">{{quiz.post_title}}</ion-card-subtitle>
+            </ion-card-header>
+        </ion-col>
+
+        <ion-col class="font-list-courses complete-course">
+            <ion-card-header class="card-courses-list card-list-center">
+              <ion-card-subtitle color="secondary">Total preguntas<br>{{quiz.total_questions}}</ion-card-subtitle>
+            </ion-card-header>
+        </ion-col>
+
+        <ion-col class="font-list-courses complete-course-data">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle color="secondary">Preguntas respondidas<br>{{quiz.total_answered_questions}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-col>
+
+        <ion-col class="font-list-courses complete-course-data">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle color="secondary">Marcas de ganado<br>{{quiz.earned_marks}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-col>
+
+        <ion-col class="font-list-courses complete-course-data">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle style="margin: 0px 10px !important;">
+              <ion-button size="block" (click)="datailQuiz(quiz)" color="warning" class="text-capitalize custom-button">
+                <span class="text">Detalles</span>
+              </ion-button>
+            </ion-card-subtitle>
+          </ion-card-header>
+        </ion-col>
+
+        <!--
+        <ion-col class="font-list-courses duration-course">
+          <ion-card color="secondary" class="card-list-courses">
+            <ion-card-header class="card-courses-list card-list-center">
+              <ion-card-subtitle>23h 15m</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+
+        <ion-col class="font-list-courses instructor-course">
+          <ion-card color="secondary" class="card-list-courses">
+            <ion-card-header class="card-courses-list card-list-center">
+              <ion-card-subtitle>Flamma NXT</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      -->
+      </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-content [fullscreen]="true" color="primary" *ngIf="list_trys_quizes.length == 0">
+  <div style="padding-top: 200px; text-align: center;">
+    <h1><b>No hay intentos de examenes</b></h1>
+    <p>No has realizado ningun intento de examen en algun curso</p>
+  </div>
+</ion-content>

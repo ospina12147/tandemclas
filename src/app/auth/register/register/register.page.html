@@ -1,0 +1,84 @@
+<ion-content class="ion-padding" color="primary">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size-sm="6" size-md="6" size-lg="6">
+        <form [formGroup]="form" (ngSubmit)="register($event)">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="8" >
+              <img width="100%" src="/assets/logo_tandem.png" />
+            </ion-col>
+            <ion-text color="dark">
+              <h4><b style="color: #ff6600 !important; font-size: 24px !important;" class="jost-font">¡Regístrate!</b></h4>
+              <p style="font-size: 13px;">Crea una cuenta para continuar con todos los cursos</p>
+            </ion-text>
+          </ion-row>
+
+              <ion-row class="ion-justify-content-center ion-no-padding">
+                <ion-col size="12">
+                  <ion-list class="ion-margin-vertical" lines="full">
+                    <!--<label for="email" style="color: white;">Primer nombre</label>-->
+                    <ion-item>
+                      <ion-icon name="person-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input class="inputRegister" type="text" formControlName="first_name" placeholder="Nombre(s)" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--<label for="email" style="color: white;">Segundo nombre</label>-->
+                    <ion-item>
+                      <ion-icon name="person-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input class="inputRegister" type="text" formControlName="last_name" placeholder="Apellido(s)" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--<label for="email" style="color: white;">Nombre de usuario</label>-->
+                    <ion-item>
+                      <ion-icon name="person-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input class="inputRegister" type="text" formControlName="username" placeholder="Nombre de usuario" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--<label for="email" style="color: white;">Correo electrónico</label>-->
+                    <ion-item>
+                      <ion-icon name="mail-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input class="inputRegister" type="text" formControlName="email" placeholder="Correo electrónico" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--<label for="email" style="color: white;">Contraseña</label>-->
+                    <ion-item>
+                      <ion-icon name="lock-closed-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input class="inputRegister" type="password" formControlName="password" placeholder="Contraseña" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--<label for="email" style="color: white;">Confirmación de la contraseña</label>-->
+                    <ion-item>
+                      <ion-icon name="lock-closed-outline" slot="start" color="dark"></ion-icon>
+                      <ion-input class="inputRegister" type="password" formControlName="confirmPassword" placeholder="Confirmar contraseña" required>
+                      </ion-input>
+                    </ion-item>
+                    <br>
+                    <ion-checkbox formControlName="aceptTerm" labelPlacement="end" style="font-size: 13px;">Acepta los términos y condiciones</ion-checkbox>
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-button expand="block" type="submit" shape="round" color="warning" class="text-capitalize jost-font custom-button" style="font-size: 18px;">
+                    <span class="text">Registrarse</span>
+                      <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+                  </ion-button>
+                  <!--
+                  <ion-button (click)="goToLogin()" expand="block">
+                    <div>
+                      <ion-icon name="log-in" slot="start"></ion-icon>
+                      Login
+                    </div>
+                    <ion-spinner *ngIf="loaderRequest"></ion-spinner>
+                  </ion-button>
+                  -->
+                </ion-col>
+              </ion-row>
+              <ion-text color="dark" style="text-align: center;">
+                <p style="font-size: 14px;">¿Ya tienes una cuenta?<a (click)="goToLogin()" style="color: #ff6600 !important;"> inicia sesión</a></p>
+              </ion-text>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

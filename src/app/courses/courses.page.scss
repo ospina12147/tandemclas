@@ -1,0 +1,88 @@
+.card-style{
+    border-radius: 10px !important;
+    margin: 0px 10px !important;
+}
+
+.content-course-grid{
+    padding: 0px !important;
+    margin: 0px !important;
+    *{
+        padding: 0px !important;
+        font-size: 12px !important;
+        margin: 0px !important;
+    }
+}
+
+.button-course-card{
+    --color: white !important;
+    margin-right: 15px !important;
+}
+
+.span-course-tag{
+    background-color: #ff6600; 
+    border-radius: 10px; 
+    padding: 0px 5px;
+    margin-bottom: 5px;
+}
+
+.style-filter{
+    *{
+        font-size: 14px !important;
+    }
+}
+
+ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;
+  
+    --color: #ddd;
+    --color-checked: #ff6600;
+  }
+  
+  ion-radio.ios::part(container) {
+    width: 20px;
+    height: 20px;
+  
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .radio-checked.ios::part(container) {
+    border-color: #ff6600;
+  }
+
+  .contenedor-flexbox {
+    display: flex; /*Convertimos al menú en flexbox*/
+  
+}
+
+.img-size-rend{
+    object-fit: cover !important;
+}
+
+.conteiner-img{
+    display: inline-block;
+  padding:5px;
+  box-sizing: border-box;
+}
+
+ion-radio{
+    font-size: 14px !important;
+}
+
+ion-searchbar {
+    --border-radius: 0;
+    --box-shadow: none;
+    --background: transparent;
+    --border: none;
+    --input-border-color: transparent;
+    --input-box-shadow: none;
+}
+
+.itemHeaderSearch{
+    border: 1px solid #000; /* Añade un borde alrededor */
+    border-radius: 8px; /* Añade bordes redondeados */
+    padding: 0px; /* Ajusta el espacio interno */
+    padding: 0px 0px !important; 
+    margin: 10px 15px;
+}

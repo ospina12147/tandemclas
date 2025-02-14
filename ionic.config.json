@@ -1,0 +1,7 @@
+{
+  "name": "TandemClass",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

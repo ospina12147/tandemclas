@@ -1,0 +1,50 @@
+
+.font-size-14{
+    font-size: 11px !important;
+}
+.card-style{
+    border-radius: 20px !important;
+    margin: 0px 15px !important;
+}
+
+ion-segment-button{
+    background: #e2e2e2 !important;
+    ion-label{
+        color: rgb(12, 12, 12) !important;
+    }
+}
+
+.img-size-rend{
+    object-fit: cover !important;
+}
+
+.contenedor-flexbox {
+    display: flex; /*Convertimos al menú en flexbox*/
+  
+}
+
+.options-courses-segment{
+    background-color: #000000;
+    min-height: 35px !important;
+    ion-segment-button{
+        height: 35px !important;
+        border-radius: 30px; /* Esto redondea el borde del ion-segment */
+        margin: 5px 10px;   /* Puedes ajustar el padding según sea necesario */
+        overflow: hidden;    /* Asegura que los bordes redondeados se apliquen correctamente */
+        min-height: 35px !important;
+        *{
+            min-height: 25px !important;
+        }
+    }
+    .segment-button-checked {
+        border-radius: 30px; /* Esto redondea el borde del ion-segment */
+        margin: 5px 10px;   /* Puedes ajustar el padding según sea necesario */
+        overflow: hidden;    /* Asegura que los bordes redondeados se apliquen correctamente */
+        background-color: #ff6600 !important;
+        min-height: 35px !important;
+        *{
+            color: white !important;
+            min-height: 25px !important;
+        }
+    }
+  }

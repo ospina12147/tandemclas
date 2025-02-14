@@ -1,0 +1,110 @@
+
+<!--
+<ion-menu menuId="menu-all-tabs" contentId="menu-all-tabs">
+  <ion-header color="primary">
+    <ion-toolbar color="primary">
+      <ion-title>Opciones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding" color="primary">
+    <ion-list class="menu-list" color="primary" [inset]="true">
+      <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="courses" [routerLink]="['/tabs/courses']" (click)="changeTitle('Cursos')">
+        <ion-icon name="school-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Cursos</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="my-profile" [routerLink]="['/tabs/my-profile']" (click)="changeTitle('Mi perfil')">
+        <ion-icon name="person-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Mi perfil</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="courses-inscript" [routerLink]="['/tabs/courses-inscript']" (click)="changeTitle('Cursos inscritos')">
+        <ion-icon name="book-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Cursos inscritos</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="list-wish" [routerLink]="['/tabs/list-wish']" (click)="changeTitle('Lista de deseos')">
+        <ion-icon name="heart-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Lista de deseos</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="rewievs" [routerLink]="['/tabs/rewievs']" (click)="changeTitle('Reseñas')">
+        <ion-icon name="star-outline" color="warning"></ion-icon>
+        <ion-label class="label-menu">Reseñas</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="try-quest" [routerLink]="['/tabs/try-quest']" (click)="changeTitle('Mis intentos de cuestionarios')">
+        <ion-icon name="document-text-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Mis intentos de cuestionarios</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="order-history" [routerLink]="['/tabs/order-history']" (click)="changeTitle('Historial de pedidos')">
+        <ion-icon name="cart-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Historial de pedidos</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="quest-and-respond" [routerLink]="['/tabs/quest-and-respond']" (click)="changeTitle('Pregunta y respuesta')">
+        <ion-icon name="help-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Pregunta y respuesta</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item color="primary" [button]="true" tab="calendar" [routerLink]="['/tabs/calendar']" (click)="changeTitle('Calendario')">
+        <ion-icon name="calendar-outline" color="warning"></ion-icon>
+        <ion-label  class="label-menu">Calendario</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+-->
+<div class="ion-page" id="menu-all-tabs">
+  <!--
+  <ion-header color="primary">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start" (click)="openMenuAll()">
+          <ion-icon name="menu" class="button-menu-all" size="large"></ion-icon>
+      </ion-buttons>
+      <ion-title style="font-size: 17px;">{{titleHeader}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+-->
+  <ion-content class="ion-padding" color="primary">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="tab1" href="/tabs/tab1" (click)="changeTitle('Inicio')">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="courses" href="/tabs/courses" (click)="changeTitle('Ajustes')">
+          <ion-icon name="reader-outline"></ion-icon>
+          <ion-label>Cursos</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="order-history" href="/tabs/order-history" (click)="changeTitle('Ajustes')">
+          <ion-icon name="wallet-outline"></ion-icon>
+          <ion-label>Transacción</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="my-profile" href="/tabs/my-profile" (click)="changeTitle('Ajustes')">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+    
+        <!--<ion-tab-button (click)="confirmLogout()">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Salir</ion-label>
+        </ion-tab-button>-->
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-content>
+</div>

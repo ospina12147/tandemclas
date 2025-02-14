@@ -1,0 +1,72 @@
+<ion-header [translucent]="true" color="primary">
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon (click)="closeModal()" name="chevron-back-sharp" size="large" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col style="padding: 0px !important;">
+          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="primary">
+  <section class="form-auth" style="align-items: initial !important;" color="light">
+    <!-- <ion-button expand="block" (click)="setOpen(true)">Open</ion-button> -->
+    <form [formGroup]="form" (ngSubmit)="updateValoration($event)">
+    <ion-grid class="grid-valoration" >
+      <ion-row>
+        <ion-col size="12" style="margin-top: 25px;">
+          <span class="letra-cat"><strong>Valoración</strong></span><br>
+        </ion-col>
+
+        <ion-col size="12" style="margin-top: 30px;">
+          <span class="letra-cat"><strong>Calificación</strong></span><br>
+          <span class="letra-cat" style="color: rgb(7, 7, 7); text-align: justify !important;">
+            Indicanos Cuanto valoras la calidad del curso, siendo 1 el mas bajo y 5 el mas alto. 
+          </span>
+        </ion-col>
+
+        <ion-col size="2">
+        </ion-col>
+        <ion-col size="8">
+            <ngx-star-rating formControlName="rating" [id]="'rating2'" class="rating-new-valoration"></ngx-star-rating>
+        </ion-col>
+        <ion-col size="2">
+        </ion-col>
+
+        <ion-col size="12" style="margin-top: 25px;">
+          <span class="letra-cat"><strong>Descripción</strong></span><br>
+          <span class="letra-cat" style="color: rgb(7, 7, 7); text-align: justify !important;">
+            Indicanos con tus palabras la calidad del curso. 
+          </span>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-textarea class="letra-cat" formControlName="review" [(ngModel)]="description" [autoGrow]="true" maxlength="500"
+            style="border:solid 1px rgb(0, 0, 0); border-radius: 10px;" value="">
+          </ion-textarea><br>
+        </ion-col>
+
+        <ion-col *ngIf="description.length >= 500" size="12">
+          <span style="color: rgb(204, 0, 0);">* Maximo 500 caracteres</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2"></ion-col>
+      <ion-col size="8" class="ion-text-center" >
+        <ion-button shape="round" size="block" type="submit" [disabled]="description.length >= 500 || loaderRequest " color="warning" class="text-capitalize custom-button">
+            <span class="text">Actualizar</span>
+            <ion-icon name="arrow-forward-circle" slot="start" slot="end" style="font-size: 35px; margin: 5px;" color="light"></ion-icon>
+        </ion-button>
+        
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+    </form>
+
+  </section>
+</ion-content>

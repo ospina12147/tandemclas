@@ -1,0 +1,84 @@
+<ion-header [translucent]="true" color="primary">
+  <div class="ion-page" id="options-filter">
+  <ion-toolbar color="primary">
+    <ion-item color="light" class="itemHeaderSearch">
+      <ion-searchbar color="light" placeholder="Consulta cursos" [debounce]="1500" (ionInput)="filterKeyWord($event)"></ion-searchbar>
+      <ion-buttons slot="end" (click)="openFilterCourse()">
+        <ion-icon name="options" size="large" style="color: white; background: #ff6600; border-radius: 5px;"></ion-icon> 
+      </ion-buttons>
+
+    </ion-item>
+  </ion-toolbar>
+</div>
+</ion-header>
+
+<ion-content color="primary" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
+  <ion-menu side="end" menuId="options-filter" contentId="options-filter">
+    <ion-content class="ion-padding style-filter" color="primary">
+      <ion-label class="jost-font" style="font-size: 18px !important;"><b>Precio</b><br><br></ion-label>
+      <ion-radio-group value="" (ionChange)="changePrice($event)">
+        <ion-radio value="" labelPlacement="end">Todos</ion-radio><br>
+        <ion-radio value="&price_type=free" labelPlacement="end">Gratis</ion-radio><br>
+        <ion-radio value="&price_type=paid" labelPlacement="end">Pago</ion-radio><br>
+      </ion-radio-group>
+      <br><br>
+      <ion-label class="jost-font" style="font-size: 18px !important;"><b>Nivel</b><br><br></ion-label>
+      <ion-radio-group value="" (ionChange)="changeNivel($event)">
+        <ion-radio value="" labelPlacement="end">Todos los niveles</ion-radio><br>
+        <ion-radio value="&level=beginner" labelPlacement="end">Principiante</ion-radio><br>
+        <ion-radio value="&level=intermediate" labelPlacement="end">Intermedio</ion-radio><br>
+        <ion-radio value="&level=expert" labelPlacement="end">Experto</ion-radio><br>
+      </ion-radio-group>
+      <br>
+      <br>
+      <ion-label class="jost-font" style="font-size: 18px !important;"><b>Duración</b><br><br></ion-label>
+      <ion-radio-group value="" (ionChange)="changeDuration($event)">
+        <ion-radio value=""  labelPlacement="end">Todos</ion-radio><br>
+        <ion-radio value="&duration=short"  labelPlacement="end">En menos de 2 horas</ion-radio><br>
+        <ion-radio value="&duration=medium"  labelPlacement="end">3 - 6 horas</ion-radio><br>
+        <ion-radio value="&duration=long"  labelPlacement="end">7 - 16</ion-radio><br>
+        <ion-radio value="&duration=extralong"  labelPlacement="end">17+ horas</ion-radio><br>
+      </ion-radio-group>
+    </ion-content>
+  </ion-menu>
+  <div style="padding-top: 70px !important;">
+  <ion-grid *ngFor="let course of listShowCourses; let i = index">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="card-style" color="light">
+          <div class="contenedor-flexbox">
+            <div style="width:40%; display:inline-block;" class="conteiner-mg" (click)="viewCourse(course)">
+              <img height="100%" class="img-size-rend" [src]="course.thumbnail_url" />
+            </div>
+            <div style="width:60%; display:inline-block;">
+              <ion-item color="light">
+                <ion-label style="color: #f08904; font-size: 12px;">
+                  {{course?.course_tag[0]?.name}}
+                </ion-label>
+                <!--
+                <ion-text style="font-size: 12px;">
+                    <span style="color: #ff6600;" *ngIf="course?.additional_info?.course_level[0] == 'all_levels'">Todos los niveles</span>
+                    <span style="color: #ff6600;" *ngIf="course?.additional_info?.course_level[0] == 'beginner'">Principiante</span>
+                    <span style="color: #ff6600;" *ngIf="course?.additional_info?.course_level[0] == 'intermediate'">Intermedio</span>
+                </ion-text>
+              -->
+                <ion-icon style="font-size: 19px !important;" name="bookmark-outline" slot="end" color="warning" *ngIf="course?.favorite != true" (click)="addWishList(course, i)"></ion-icon>
+                <ion-icon style="font-size: 19px !important;" name="bookmark" slot="end" color="warning" *ngIf="course?.favorite == true" (click)="deleteWishList(course, i)"></ion-icon>
+                <br>
+              </ion-item>
+              <ion-item color="light" style="margin-bottom: 5px;">
+                <ion-text (click)="viewCourse(course)">
+                  <span style="font-size: 16px;"><b class="jost-font" style="text-align: justify !important;">{{course?.post_title}}</b></span><br><br>
+                  <ion-label *ngIf="course.price == false" style="font-size: 17px; color: #ff6600;"><b style="text-align: justify !important;">Gratis</b></ion-label>
+                  <ion-label *ngIf="course.price != false" style="font-size: 17px; color: #ff6600;"><b style="text-align: justify !important;">$ {{course.price}}</b></ion-label>
+                  <ion-icon name="star" style="font-size: 13px; color: #ff6600;"></ion-icon><span style="font-size: 11px;"> {{course?.ratings?.rating_avg}} | {{course?.additional_info?.course_duration[0].hours}} h {{course?.additional_info?.course_duration[0].minutes}} m</span>
+              </ion-text>
+              </ion-item>
+            </div>
+        </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+</ion-content>

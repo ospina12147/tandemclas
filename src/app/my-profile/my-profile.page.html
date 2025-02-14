@@ -1,0 +1,58 @@
+<ion-content class="ion-padding" color="primary">
+
+  <ion-avatar style="margin: auto;" class="profile-img">
+    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+  </ion-avatar>
+    <div class="container-card-profile">
+      <div style="text-align: center;">
+        <ion-text>
+          <b class="jost-font" style="font-size: 24px;">{{this.dataProfile.first_name}} {{this.dataProfile.last_name}}</b><br>
+          <p style="font-size: 13px !important;">{{this.dataProfile.user_email}}</p>
+        </ion-text>
+      </div>
+
+      <ion-list lines="none" style="background: #e2e2e2;">
+        <ion-item color="primary" (click)="goToComponent('tabs/tab2')">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label class="letra-cat">Editar perfil</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="goToComponent('tabs/list-notification')">
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-label class="letra-cat">Notificaciones</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="goToComponent('tabs/courses-inscript')">
+          <ion-icon name="library-outline"></ion-icon>
+          <ion-label class="letra-cat">Cursos inscritos</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="goToComponent('tabs/list-wish')">
+          <ion-icon name="bookmark-outline"></ion-icon>
+          <ion-label class="letra-cat">Lista de deseos</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="goToComponent('tabs/rewievs')">
+          <ion-icon name="star-half-outline"></ion-icon>
+          <ion-label class="letra-cat">Reseñas</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="goToComponent('tabs/try-quest')">
+          <ion-icon name="file-tray-full-outline"></ion-icon>
+          <ion-label class="letra-cat">Intentos de cuestionarios</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="goToComponent('tabs/quest-and-respond')">
+          <ion-icon name="help-circle-outline"></ion-icon>
+          <ion-label class="letra-cat">Preguntas y respuestas</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item color="primary" (click)="confirmLogout()">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label class="letra-cat">Cerrar sesión</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </div>
+
+</ion-content>

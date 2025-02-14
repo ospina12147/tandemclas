@@ -1,0 +1,39 @@
+.conteiner-profile{
+    width: 94% !important;
+    background: transparent !important;
+    min-height: 92% !important;
+    margin: 3% !important;
+    padding: 20px;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+}
+
+.profile-img{
+    border: 3px black solid !important;
+    margin-top: 20px !important;
+    width: 100px !important;
+    height: 100px !important;
+    position: relative;
+}
+
+ion-item{
+    ion-label{
+        font-size: 14px;
+    }
+
+    ion-icon{
+        font-size: 20px;
+    }
+
+}
+ion-label{
+    margin-left: 5px !important;
+}
+
+.container-card-profile{
+    margin: 0px 20px !important;
+    margin-top: -60px !important;
+    background: #e2e2e2;
+    border-radius: 15px;
+    padding-top: 70px !important;
+}

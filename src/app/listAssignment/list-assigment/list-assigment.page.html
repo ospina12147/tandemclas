@@ -1,0 +1,56 @@
+<ion-header [translucent]="true" color="medium">
+  <ion-toolbar color="medium">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon (click)="closeModal()" name="chevron-back-sharp" size="large" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col style="padding: 0px !important;">
+          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="primary">
+  <section class="form-auth" style="align-items: initial !important;" color="light">
+    <!-- <ion-button expand="block" (click)="setOpen(true)">Open</ion-button> -->
+    <ion-grid class="grid-valoration" >
+      <ion-row>
+        <ion-col size="12" style="margin-top: 25px;">
+         
+        </ion-col>
+
+
+        <ion-col size="12" style="margin-top: 25px;">
+          <span class="letra-cat"><strong>Descripción</strong></span><br>
+          <span class="letra-cat" style="color: rgb(168, 168, 168); text-align: justify !important;">
+            Puedes modificar la respuesta de la tarea. 
+          </span>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-textarea class="letra-cat" [(ngModel)]="descriptionAssigment" [autoGrow]="true" maxlength="500"
+            style="border:solid 1px rgb(199, 199, 199); border-radius: 10px;" value="">
+          </ion-textarea><br>
+        </ion-col>
+
+        <ion-col *ngIf="descriptionAssigment.length >= 500" size="12">
+          <span style="color: rgb(204, 0, 0);">* Maximo 500 caracteres</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2"></ion-col>
+      <ion-col size="8" class="ion-text-center" >
+        <ion-button shape="round" size="block" type="submit" [disabled]="descriptionAssigment >= 500 || loaderRequest " color="warning" class="text-capitalize custom-button" style="margin: 0px 20px !important;" class="text-capitalize custom-button" (click)="updateValoration()">
+            <span class="text">Actualizar</span>
+            <ion-icon name="arrow-forward-circle" slot="start" slot="end" style="font-size: 35px; margin: 5px;" color="light"></ion-icon>
+        </ion-button>
+        
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+
+  </section>
+</ion-content>

@@ -1,0 +1,126 @@
+.menu-list{
+    background-color: #2e2e2e !important;
+}
+
+.menu-list>ion-item>ion-label{
+    font-size: 15px !important;
+    margin-left: 10px !important;
+}
+
+.menu-list>ion-item>ion-icon{
+    font-size: 18px !important;
+}
+
+.card-courses{
+    text-align: center;
+}
+
+.card-dashboard{
+    margin: 5px 5px !important;
+    height: 90% !important;
+}
+
+.ion-padding{
+    background-color: #e2e2e2 !important;
+}
+
+  .item-segment{
+    width: 180px !important;
+    margin: 5px 10px !important;
+    ion-card-header>*{
+        font-size: 10px !important;
+    }
+  }
+
+  .segments-home{
+    padding: 5px 10px !important;
+  }
+
+  .segment-title-course{
+    width: 180px !important;
+    margin: 5px 10px !important;
+    ion-card-header>*{
+        font-size: 10px !important;
+    }
+  }
+
+  .recomend-to-me-card{
+    width: 270px !important;
+    min-width: 270px !important;
+  }
+
+  .forecast_container{
+    flex-wrap: nowrap;
+    overflow-x: scroll !important;
+    overflow-y: hidden;
+    margin: 15px 4px !important;
+  }
+
+  .forecast_container::-webkit-scrollbar {
+    height: 8px; /* Altura de la barra horizontal */
+  }
+  
+  .forecast_container::-webkit-scrollbar-thumb {
+    background-color: orange; /* Color de la barra (thumb) */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  .forecast_container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del fondo de la barra */
+  }
+
+  .card-courses-list{
+    padding: 1px !important;
+  }
+
+  .card-courses-list{
+    padding: 1px !important;
+  }
+
+  .font-list-courses{
+    *{
+        font-size: 12px !important;
+    }
+  }
+
+  .title-course{
+    width: 180px !important;
+    min-width: 180px !important;
+  }
+
+  .complete-course{
+    width: 120px !important;
+    min-width: 120px !important;
+  }
+
+  .duration-course{
+    width: 100px !important;
+    min-width: 100px !important;
+  }
+
+  .quantity-course{
+    width: 130px !important;
+    min-width: 130px !important;
+  }
+
+  .instructor-course{
+    width: 110px !important;
+    min-width: 110px !important;
+  }
+
+  .card-list-center{
+    text-align: center;
+  }
+
+  .excritorio-text-low{
+    font-size: 10px !important;
+    text-transform: capitalize !important;
+  }
+
+  .text-size-initial{
+    font-size: 24px !important;
+  }
+
+  .font-size-title-card{
+    font-size: 16px !important;
+  }

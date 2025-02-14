@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+  <ion-title>Lista de reseñas</ion-title>
+</ion-toolbar>
+<ion-content class="padding-laterals" color="primary" *ngIf="list_reviews.length > 0">
+  <ion-grid color="primary">
+    <ion-row *ngFor="let review of list_reviews;" style="margin-left: 20px; margin-right: 20px; border-radius: 25px;">
+      <ion-col size="12">
+        <ion-card class="card-style" color="light">
+          <ion-card-header>
+            <ion-card-subtitle><b>{{review.course_title}}</b></ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <b style="color: #ff6600;">{{review.rating_star}}</b>
+          <br>
+          Hace {{review.count_days}} dias
+          <br>
+          <br>
+          <span>{{review.comment_content}}.</span>
+          <br>
+          <ion-label style="float: right;" color="warning" (click)="editValoration(review)"><ion-icon name="pencil-outline"></ion-icon> Editar comentario.</ion-label>
+          <br>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content [fullscreen]="true" color="primary" *ngIf="list_reviews.length == 0">
+  <div style="padding-top: 200px; text-align: center;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+        </ion-col>
+        <ion-col size="6">
+          <ion-icon name="file-tray" style="font-size: 90px;" color="warning"></ion-icon>
+        </ion-col>
+        <ion-col size="3">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-text style="padding: 5px 20px;">
+      <h1><b>No hay reseñas</b></h1>
+    <p>No has realizado ninguna reseña en algun curso</p>
+    </ion-text>
+  </div>
+</ion-content>

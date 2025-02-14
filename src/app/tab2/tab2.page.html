@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-segment color="warning" value="Profile" (ionChange)="onSegmentChange($event)" >
+    <ion-segment-button value="Profile">
+      <ion-label color="light" class="text-capitalize font-size-14">Perfil</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="resetPass">
+      <ion-label color="light" class="text-capitalize font-size-14">Restablecer contraseña</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content *ngIf="(segmentContent == 'Profile')" class="ion-padding" color="primary">
+
+
+    <ion-avatar class="profile-img" style="margin: auto; margin-top: 20px !important;" (click)="updatePhoto()">
+      <img width="200px" alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
+    </ion-avatar>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size-sm="6" size-md="6" size-lg="6">
+        <form [formGroup]="form" (ngSubmit)="updateProfile($event)">
+              <ion-row class="ion-justify-content-center" style="padding: 0px 10px !important;">
+                <ion-col size="12">
+                  <ion-list class="ion-margin-vertical" lines="full">
+                    <!--<label for="email" class="font-size-text"><b>Primer nombre</b></label>-->
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="text" formControlName="first_name" placeholder="Nombre(s)" [value]="form.value.first_name" required>
+                      </ion-input>
+                    </ion-item>
+
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="text" formControlName="last_name" placeholder="Apellido(s)" [value]="form.value.last_name" required>
+                      </ion-input>
+                    </ion-item>
+
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="text" formControlName="job_title" placeholder="Trabajo" [value]="form.value.job_title" required>
+                      </ion-input>
+                    </ion-item>
+
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="text" formControlName="phone_number" placeholder="Telefono" [value]="form.value.phone_number" required>
+                      </ion-input>
+                    </ion-item>
+                    <!--
+                    <label for="email" style="color: white;">Twitter</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="password" required>
+                      </ion-input>
+                    </ion-item>
+                    <label for="email" style="color: white;">Facebook</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="confirmPassword" required>
+                      </ion-input>
+                    </ion-item>
+                    <label for="email" style="color: white;">Instagram</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="confirmPassword" required>
+                      </ion-input>
+                    </ion-item>
+                    <label for="email" style="color: white;">Linkedin</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="confirmPassword" required>
+                      </ion-input>
+                    </ion-item>
+                    <label for="email" style="color: white;">Pinterest</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="confirmPassword" required>
+                      </ion-input>
+                    </ion-item>
+                    <label for="email" style="color: white;">Youtube</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="confirmPassword" required>
+                      </ion-input>
+                    </ion-item>
+                    <label for="email" style="color: white;">Github</label>
+                    <ion-item class="item-input-height">
+                      <ion-input type="text" formControlName="confirmPassword" required>
+                      </ion-input>
+                    </ion-item>
+                  -->
+                    <ion-item>
+                      <ion-textarea class="font-size-text letra-cat" formControlName="profile_bio" placeholder="Biografia" [autoGrow]="true" maxlength="500" [value]="form.value.profile_bio">
+                      </ion-textarea>
+                    </ion-item>
+                    
+
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-button expand="block" shape="round" type="submit" [disabled]="form.invalid || flagButton " expand="block" color="warning" class="text-capitalize jost-font custom-button" style="font-size: 18px;">
+                    <span class="text">Actualizar</span>
+                      <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+                  </ion-button>
+                  <!--
+                  <ion-button (click)="goToLogin()" expand="block">
+                    <div>
+                      <ion-icon name="log-in" slot="start"></ion-icon>
+                      Login
+                    </div>
+                    <ion-spinner *ngIf="loaderRequest"></ion-spinner>
+                  </ion-button>
+                  -->
+                </ion-col>
+              </ion-row>
+
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-content *ngIf="(segmentContent == 'resetPass')" class="ion-padding" color="primary">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size-sm="6" size-md="6" size-lg="6">
+        <form [formGroup]="formPassword" (ngSubmit)="updatePassword($event)">
+              <ion-row class="ion-justify-content-center" style="padding: 0px 10px !important;">
+                <ion-col size="12">
+                  <ion-list class="ion-margin-vertical" lines="full">
+
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="password" placeHolder="Antigua contraseña" formControlName="lastPassword" required>
+                      </ion-input>
+                    </ion-item>
+
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="password" placeHolder="Nueva contraseña" formControlName="password" required>
+                      </ion-input>
+                    </ion-item>
+
+                    <ion-item class="item-input-height">
+                      <ion-input class="font-size-text" type="password" placeHolder="Confirmar nueva contraseña" formControlName="newPasswordConfirm" required>
+                      </ion-input>
+                    </ion-item>
+                    
+
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-button expand="block" shape="round" type="submit" [disabled]="formPassword.invalid || flagButton " expand="block" color="warning" class="text-capitalize jost-font custom-button" style="font-size: 18px;">
+                    <span class="text">Actualizar contraseña</span>
+                      <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+                  </ion-button>
+                  <!--
+                  <ion-button (click)="goToLogin()" expand="block">
+                    <div>
+                      <ion-icon name="log-in" slot="start"></ion-icon>
+                      Login
+                    </div>
+                    <ion-spinner *ngIf="loaderRequest"></ion-spinner>
+                  </ion-button>
+                  -->
+                </ion-col>
+              </ion-row>
+
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

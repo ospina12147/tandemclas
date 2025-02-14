@@ -1,0 +1,49 @@
+ion-grid, ion-row {
+	height: 100%;
+}
+
+ion-list {
+	background: transparent;
+}
+
+ion-item {
+	--background: #ffffff !important;
+    margin-top: 5px !important;
+    margin-bottom: 20px !important;
+    --border-radius: 5px !important;
+
+	&.chkItem {
+		--border-width: 0;
+	}
+
+    .inputRegister{
+        color: rgb(10, 10, 10) !important;
+        font-size: 14px !important;
+        --placeholder-color: rgb(50, 50, 50) !important;
+    }
+}
+
+ion-card{
+	border-radius: 1em;
+}
+
+.centrar{
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+.form-register{
+    background: #252525 !important;
+}
+
+  ion-checkbox {
+    --checkbox-background-checked: #ff6600;
+  }
+  
+  ion-checkbox::part(container) {
+    border-radius: 25px;
+    border: 2px solid #ff6600;
+  }

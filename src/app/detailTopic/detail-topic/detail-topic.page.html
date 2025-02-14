@@ -1,0 +1,270 @@
+<ion-header color="primary" style="background-color: #e2e2e2;">
+  <ion-segment color="warning" style="background-color: #e2e2e2;" value="lecciones" (ionChange)="onSegmentChange($event)" >
+    <ion-segment-button value="lecciones">
+      <ion-label color="light" class="text-capitalize font-size-14">lecciones</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="qya">
+      <ion-label color="light" class="font-size-14"><span style="text-transform: uppercase;">FAQ</span></ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content *ngIf="(segmentContent == 'lecciones')" class="ion-padding" color="primary">
+<ion-menu side="end" menuId="menu-topic" contentId="menu-topic" color="primary">
+  <ion-content  color="primary">
+    <ion-accordion-group *ngFor="let course of topics; let i = index">
+      <ion-accordion value="i" color="primary" class="accordion-course">
+        <ion-item slot="header" color="primary">
+          <ion-label>{{course?.post_title}}</ion-label>
+        </ion-item>
+          <div class="padding-item" slot="content">
+            <ion-list class="menu-list" color="primary" [inset]="true">
+                <ion-item color="primary" *ngFor="let lesson of course.lessons;" [button]="true" (click)="showLesson(lesson)">
+                  <ion-icon name="document-text-outline" color="warning"></ion-icon>
+                  <ion-label  class="label-menu">{{lesson?.post_title}}</ion-label>
+                </ion-item>
+
+                <ion-item color="primary" [button]="true" *ngFor="let assignment of course.assignments;" (click)="showAssignment(assignment)">
+                  <ion-icon name="library-outline" color="warning"></ion-icon>
+                  <ion-label  class="label-menu">{{assignment?.post_title}}</ion-label>
+                </ion-item>
+
+                <ion-item color="primary" [button]="true" *ngFor="let quiz of course.quizzes;" (click)="showQuiz(quiz)">
+                  <ion-icon name="id-card-outline" color="warning"></ion-icon>
+                  <ion-label  class="label-menu">{{quiz?.post_title}}</ion-label>
+                </ion-item>
+            </ion-list>
+
+          </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="menu-topic" style="background-color: #e2e2e2 !important;">
+    <ion-toolbar color="primary">
+      <ion-buttons style="padding-left: 10px;" color="primary">
+        <ion-icon name="school" size="large" color="warning" (click)="validateCompleteCourse()"></ion-icon> 
+      </ion-buttons>
+
+      <ion-buttons style="padding-right: 10px;" color="primary" slot="end">
+        <ion-icon name="document-text" size="large" color="warning" (click)="openMenuTopic()"></ion-icon> 
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-content color="primary">
+
+      <div style=" padding: 5px 30px;background-color: #e2e2e2; height: 100%;"  *ngIf="ionContent == 'inicio'">
+        vista de Inicial
+      </div>
+      
+      <div  style="background-color: #e2e2e2; height: 100%;"  *ngIf="ionContent == 'lesson'">
+        <div class="video-player">
+          <iframe *ngIf="dataLesson.url_video" class="video" [src]="dataLesson?.url_video | safeUrl">
+          </iframe>
+        </div>
+        <div style="padding: 15px 25px;">
+          <div *ngIf="dataLesson?.attachments != [] && dataLesson.post_title" style="margin-bottom: 40px;">
+            <ion-segment color="warning" value="lesson" (ionChange)="selectInfoLesson($event)" >
+              <ion-segment-button value="lesson">
+                <ion-label color="light" class="text-capitalize font-size-14">Resumen</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="archives">
+                <ion-label color="light" class="text-capitalize font-size-14">Archivos</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+          <div *ngIf="descriptionLesson == 'lesson'">
+            <h6><b>{{dataLesson?.post_title}}</b></h6><br>
+            <div class="text-justify" style="font-size: 13px; color: #A0A4AB;" [innerHTML]="dataLesson?.post_content"></div><br>
+            <p for="">{{dataLesson?.thumbnail}}</p>
+          </div>
+          <div *ngIf="descriptionLesson == 'archives' && dataLesson?.attachments != []" color="primary">
+            <ion-list *ngFor="let attachment of dataLesson?.attachments; let i = index" color="primary" class="list-file-study">
+              <a style="color: f4f5f8; text-decoration: none;" [href]="attachment" [download]="attachment">
+                <ion-grid>
+                  <ion-row class="ion-justify-content-center ion-align-items-center">
+                <ion-col class="ion-text-center">
+                  <ion-button shape="round" style="background-color: #ff6600; color: #f4f5f8; border-radius: 50px;" class="text-capitalize jost-font custom-button" type="button" color="warning">
+                    <span class="text">Descargar archivo de estudio {{i+1}}</span>
+                    <ion-icon name="arrow-forward-circle" style="font-size: 20px; margin: 5px;" slot="end" color="light"></ion-icon>
+                  </ion-button>
+                <!--
+                  <ion-button (click)="goToRegisterD()" expand="block">
+                    <div>
+                      <ion-icon name="log-in" slot="start"></ion-icon>
+                      registrar
+                    </div>
+                    <ion-spinner *ngIf="loaderRequest"></ion-spinner>
+                  </ion-button>
+                -->
+                </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </a><br><br>
+            </ion-list>
+          </div>
+        </div>
+        
+      </div>
+
+      <div style="padding: 15px 20px; background-color: #e2e2e2; height: 100%;"  *ngIf="ionContent == 'assignment'">
+        <h6 class="jost-font" style="font-size: 18px; padding-left: 10px;"><b>{{infoAssigment?.post_title}}</b></h6>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="6">
+              <ion-text class="font-size-14">
+                <b>Puntos totales:</b> {{infoAssigment?.options?.meta_data?._tutor_assignment_total_mark[0]}} <br> 
+                <b>Marcas de aprobación:</b> {{infoAssigment?.options?.meta_data?._tutor_assignment_pass_mark[0]}}
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="font-size-14">
+                <b>Tiempo limite:</b> {{infoAssigment?.meta_data?.time_duration?.value}} <span *ngIf="infoAssigment?.meta_data?.time_duration?.time == 'weeks'">semanas</span>
+                <span *ngIf="infoAssigment?.meta_data?.time_duration?.time == 'minutes'">minutos</span> <br>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <br>
+        <ion-text class="font-size-14" style="padding-left: 10px;"><b>Descripción</b></ion-text>
+        <div class="text-justify" style="font-size: 16px; color: #A0A4AB; padding-left: 10px;" [innerHTML]="infoAssigment?.post_content"></div><br>
+        <br>
+        <br>
+
+        <ion-button *ngIf="infoAssigment.options.assignment.comment_content" expand="block" shape="round" color="warning" class="text-capitalize custom-button" style="margin: 0px 20px !important;" (click)="showListAssigment(infoAssigment.options.assignment)">
+          <span class="text">Ver tarea enviada</span>
+          <ion-icon name="document-text" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+      </ion-button>
+        <br>
+          <ion-button *ngIf="!infoAssigment.options.assignment.comment_content" expand="block" shape="round" color="warning" class="text-capitalize custom-button" style="margin: 0px 20px !important;" (click)="showASsigmentResp(infoAssigment)">
+            <span class="text">Enviar tarea</span>
+              <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+          </ion-button>
+      </div>
+
+      <div style="padding: 15px 25px; background-color: #e2e2e2; height: 100%;" *ngIf="ionContent == 'quiz'">
+        <h6 class="jost-font" style="font-size: 18px; padding-left: 10px;"><b>{{dataQuiz?.title}}</b></h6>
+        <br>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="6">
+              <ion-text class="font-size-14">
+                <b>Preguntas:</b> {{dataQuiz?.cant_quest}} <br> 
+                <b>Total de intentos:</b> {{dataQuiz?.total_trys}}
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="font-size-14">
+                <b>Tiempo limite:</b> {{dataQuiz.metaData?.time_limit?.time_value}} <span *ngIf="dataQuiz?.metaData?.time_limit?.time_type == 'weeks'">semanas</span>
+                <span *ngIf="dataQuiz?.metaData?.time_limit?.time_type == 'minutes'">minutos</span> <br>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <br>
+        <ion-text class="font-size-14" style="padding-left: 10px;"><b>Descripción</b></ion-text>
+        <p>
+          <span style="padding-left: 10px;">{{dataQuiz?.post_content}}</span><br>
+          <br>
+        </p>
+        <br>
+        <div *ngIf="list_trys_quizes != [] && list_trys_quizes != false">
+          <ion-text class="font-size-14" style="padding-left: 10px;">Intentos</ion-text>
+          <div class="scroll-container-quiz">
+            <ion-grid class="margin-background" *ngFor="let quiz of list_trys_quizes;">
+              <ion-row nowrap class="forecast_container">
+                <ion-col class="font-list-courses title-course" >
+                    <ion-card-header class="card-courses-list">
+                      <br>
+                      <ion-card-subtitle color="secondary">{{quiz.attempt_started_at}}</ion-card-subtitle>
+                    </ion-card-header>
+                </ion-col>
+        
+                <ion-col class="font-list-courses complete-course">
+                    <ion-card-header class="card-courses-list card-list-center">
+                      <ion-card-subtitle color="secondary">Total preguntas:<br>{{quiz.total_questions}}</ion-card-subtitle>
+                    </ion-card-header>
+                </ion-col>
+        
+                <ion-col class="font-list-courses complete-course-data">
+                  <ion-card-header class="card-courses-list card-list-center">
+                    <ion-card-subtitle color="secondary">Preguntas respondidas:<br>{{quiz.total_answered_questions}}</ion-card-subtitle>
+                  </ion-card-header>
+                </ion-col>
+        
+                <ion-col class="font-list-courses complete-course-data">
+                  <ion-card-header class="card-courses-list card-list-center">
+                    <ion-card-subtitle color="secondary">Marcas de ganado:<br>{{quiz.earned_marks}}</ion-card-subtitle>
+                  </ion-card-header>
+                </ion-col>
+        
+                <ion-col class="font-list-courses complete-course-data">
+                  <ion-card-header class="card-courses-list card-list-center">
+                    <ion-card-subtitle style="margin: 0px 10px !important;">
+                      <ion-button (click)="datailQuiz(quiz)" size="block" color="warning" class="text-capitalize custom-button">
+                        <span class="text">Detalles</span>
+                      </ion-button>
+                    </ion-card-subtitle>
+                  </ion-card-header>
+                </ion-col>
+        
+                <!--
+                <ion-col class="font-list-courses duration-course">
+                  <ion-card color="secondary" class="card-list-courses">
+                    <ion-card-header class="card-courses-list card-list-center">
+                      <ion-card-subtitle>23h 15m</ion-card-subtitle>
+                    </ion-card-header>
+                  </ion-card>
+                </ion-col>
+        
+                <ion-col class="font-list-courses instructor-course">
+                  <ion-card color="secondary" class="card-list-courses">
+                    <ion-card-header class="card-courses-list card-list-center">
+                      <ion-card-subtitle>Flamma NXT</ion-card-subtitle>
+                    </ion-card-header>
+                  </ion-card>
+                </ion-col>
+              -->
+              </ion-row>
+            </ion-grid>
+        </div>
+        </div>
+      <ion-button expand="block" shape="round" color="warning" class="text-capitalize custom-button" style="margin: 0px 20px !important;"  (click)="showQuizResp(dataQuiz)">
+        <span class="text">Iniciar cuestionario </span>
+          <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="light"></ion-icon>
+      </ion-button>
+      </div>
+    </ion-content>
+</div>
+</ion-content>
+
+<ion-content *ngIf="(segmentContent == 'qya')" color="light">
+  <div style="height: 100%; background-color: #ffffff; padding: 0px 10px !important;">
+  <ion-grid style="margin-top: 20px; padding-bottom: 50px;">
+    <ion-row *ngFor="let question of questions;">
+      <ion-col size="9" class="cloud-message" color="primary"
+        *ngIf="userData?.id != question?.user_id">
+        <ion-text class="message-text" color="dark"><b>{{question?.display_name}}</b>><br>
+        {{question?.comment_content}}</ion-text>
+        <div class="time"><br>
+          <span style="color: #ff6600;">{{question?.comment_date_gmt}}</span>
+        </div>
+      </ion-col>
+      <ion-col offset="3" size="9" class="cloud-message" color="primary"
+        *ngIf="userData?.id == question?.user_id">
+        <ion-text class="message-text" color="dark"><b>{{question?.display_name}}</b><br>
+        {{question?.comment_content}}</ion-text>
+        <div class="time"><br>
+          <span style="color: #ff6600;">{{question?.comment_date_gmt}}</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+</ion-content>
+<ion-footer *ngIf="(segmentContent == 'qya')" color="primary">
+  <ion-item color="primary">
+    <ion-input color="primary" type="text" placeholder="Escribe tu pregunta" [(ngModel)]="questionSend"></ion-input>
+      <ion-icon name="arrow-forward-circle" style="font-size: 35px; margin: 5px;" slot="end" color="warning" (click)="sendQuestion()"></ion-icon>
+  </ion-item>
+</ion-footer>

@@ -1,0 +1,77 @@
+<ion-toolbar color="primary">
+  <ion-title>Preguntas y respuestas</ion-title>
+</ion-toolbar>
+<ion-content class="padding-laterals" color="primary">
+  <ion-grid class="margin-background" *ngFor="let q_a of list_q_a; let i = index">
+    <ion-row nowrap class="forecast_container">
+      <ion-col class="font-list-courses title-course" >
+          <ion-card-header class="card-courses-list">
+            <ion-card-subtitle color="dark">{{q_a.post_title}}</ion-card-subtitle>
+          </ion-card-header>
+      </ion-col>
+
+      <ion-col class="font-list-courses title-course">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle color="dark">
+              <div [innerHTML]="q_a.comment_content"></div>
+            </ion-card-subtitle>
+          </ion-card-header>
+      </ion-col>
+
+      <ion-col class="font-list-courses complete-course-data">
+        <ion-card-header class="card-courses-list card-list-center">
+          <ion-card-subtitle color="dark">Numero de respuesta<br>{{q_a?.answer_count}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-col>
+
+      <!--
+      <ion-col class="font-list-courses complete-course-data">
+        <ion-card-header class="card-courses-list card-list-center">
+          <ion-card-subtitle style="margin: 0px 10px !important;">
+            <ion-button size="block" color="warning" class="text-capitalize">
+              Detalles
+            </ion-button>
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-col>
+      -->
+
+      <ion-col class="font-list-courses course-data-buttona">
+        <ion-card-header class="card-courses-list card-list-center">
+          <ion-card-subtitle style="margin: 0px 10px !important;">
+            <ion-button id="trigger+{{i}}" size="block" color="warning" class="text-capitalize">
+              <ion-icon name="ellipsis-vertical" color="light"></ion-icon>
+            </ion-button>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-popover trigger="trigger+{{i}}" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-list class="menu-list">
+                <ion-item [button]="true" color="primary" (click)="markNoRead(q_a)"><ion-icon name="mail" style="margin-right: 5px;"></ion-icon> Marcar como no leido</ion-item>
+                <ion-item [button]="true" color="primary" (click)="deleteQ(q_a)"><ion-icon name="trash" style="margin-right: 5px;"></ion-icon> Borrar</ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+      <!--
+      <ion-col class="font-list-courses duration-course">
+        <ion-card color="secondary" class="card-list-courses">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle>23h 15m</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="font-list-courses instructor-course">
+        <ion-card color="secondary" class="card-list-courses">
+          <ion-card-header class="card-courses-list card-list-center">
+            <ion-card-subtitle>Flamma NXT</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    -->
+    </ion-row>
+  </ion-grid>
+</ion-content>

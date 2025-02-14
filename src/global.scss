@@ -1,0 +1,236 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-loading.custom-loading {
+    --spinner-color: #ff6600;
+  }
+
+  ion-alert{
+    --background: #ffffff !important
+  }
+
+  ion-alert.alert-confirm-logout{
+    --width: 70% !important;
+    *{
+        color: #000000 !important;
+        font-size: 14px !important;
+    }
+  }
+  .text-capitalize{
+    text-transform: lowercase;
+  }
+
+  .text-capitalize{
+    .text::first-letter{
+      text-transform: uppercase !important;
+    }
+    
+  }
+
+  ion-segment-button{
+    ion-label{
+      text-transform: lowercase;
+    }
+    ion-label::first-letter{
+      text-transform: uppercase !important;
+    }
+  }
+
+
+  .alert-button-group{
+    .alert-button{
+      .alert-button-inner{
+        text-transform: lowercase;
+      }
+      .alert-button-inner::first-letter{
+        text-transform: uppercase !important;
+      }
+    }
+  }
+
+  .alert-button-inner{
+    color: #141414 !important;
+  }
+
+  .rating{
+    width: 100% !important;
+  }
+  
+  .rating-star-profile>form>label.star {
+    padding: 10px 2px !important;
+    font-size: 20px !important;
+  }
+  
+  .rating-new-valoration>form>label.star {
+    float: right !important;
+    padding: 10px 2px !important;
+    font-size: 30px !important;
+    width: 20%;
+    text-align: center;
+    color: #ff6600;
+  }
+
+  .text-justify{
+    text-align: justify !important;
+  }
+
+  @font-face {
+    font-family: 'mulishFontProyect';
+    src: url('./assets/fonts/Mulish-Light.ttf');
+  }
+
+  *{
+    font-family: 'mulishFontProyect';
+  }
+
+  @font-face {
+    font-family: 'jost-proyect-font';
+    src: url('./assets/fonts/Jost-Light.ttf');
+  }
+
+  .jost-font{
+    font-family: 'jost-proyect-font' !important;
+  }
+
+  .toolbar-background{
+    background: #000000 !important;
+  }
+
+  .card-style{
+    border-radius: 10px !important;
+    margin: 0px 10px !important;
+}
+
+.content-course-grid{
+    padding: 0px !important;
+    margin: 0px !important;
+    *{
+        padding: 0px !important;
+        font-size: 12px !important;
+        margin: 0px !important;
+    }
+}
+
+.button-course-card{
+    --color: white !important;
+    margin-right: 15px !important;
+}
+
+.span-course-tag{
+    background-color: #ff6600; 
+    border-radius: 10px; 
+    padding: 0px 5px;
+    margin-bottom: 5px;
+}
+
+.style-filter{
+    *{
+        font-size: 14px !important;
+    }
+}
+
+ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;
+  
+    --color: #ddd;
+    --color-checked: #ff6600;
+  }
+  
+  ion-radio.ios::part(container) {
+    width: 20px;
+    height: 20px;
+  
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .radio-checked.ios::part(container) {
+    border-color: #ff6600;
+  }
+
+  .contenedor-flexbox {
+    display: flex; /*Convertimos al menú en flexbox*/
+  
+}
+
+.img-size-rend{
+    object-fit: cover !important;
+}
+
+.conteiner-img{
+    display: inline-block;
+  padding:5px;
+  box-sizing: border-box;
+}
+
+ion-radio{
+    font-size: 14px !important;
+}
+
+.custom-button {
+  --padding-start: 16px !important;
+  --padding-end: 16px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.custom-button ion-icon {
+  margin-left: auto !important; /* Empuja el icono hacia el extremo derecho */
+}
+
+.custom-button .text {
+  flex: 1 !important; /* Permite que el texto ocupe el espacio necesario */
+  text-align: center !important; /* Centra el texto */
+}
+
+.conteiner-profile{
+  width: 94% !important;
+  background: transparent !important;
+  min-height: 92% !important;
+  margin: 3% !important;
+  padding: 0px 15px;
+  ion-card-content{
+      background-color: #252525 !important;
+      //background-color: #ffffff !important;
+      border-radius: 15px;
+  }
+}
+

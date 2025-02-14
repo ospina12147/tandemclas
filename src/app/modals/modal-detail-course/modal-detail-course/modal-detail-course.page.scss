@@ -1,0 +1,47 @@
+.conteiner-profile{
+    width: 94% !important;
+    background: transparent !important;
+    min-height: 92% !important;
+    margin: 3% !important;
+    padding: 0px 15px;
+    ion-card-content{
+        background-color: #ffffff !important;
+        border-radius: 15px;
+    }
+}
+
+strong{
+    color: #ff6600 !important;
+}
+
+.font-size-subtitle{
+    font-size: 15px !important;
+}
+
+
+
+.backg-accordion{
+    background-color: #000000 !important;
+}
+
+.video-player{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .video{
+      width: 100%;
+      height: 300px;
+    }
+  }
+
+  ion-item{
+    div{
+        padding: 0px !important;
+    }
+  }
+
+  .card-courses-list{
+    margin-left: 10px !important;
+  }

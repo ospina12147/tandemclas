@@ -1,0 +1,208 @@
+<ion-content color="primary">
+  <!--
+  <ion-accordion-group  value="first">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="primary">
+        <ion-label>Escritorio</ion-label>
+      </ion-item>
+    -->
+      <div class="ion-padding" style="padding-bottom: 0px !important;">
+        <ion-grid >
+          <ion-row>
+            <ion-col size="12" style="margin-bottom: 10px !important;">
+              <ion-text class="text-size-initial jost-font">
+                <b class="jost-font" style="color: #111111;">Hola {{dataUser?.data?.first_name}} {{dataUser?.data?.last_name}}.</b>
+              </ion-text>
+              <br>
+              <ion-text>
+                <h6 style="font-size: 13px !important; color: #111111;">Este es tu historial de cursos.</h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card color="warning" class="card-dashboard">
+                <ion-card-header class="card-courses" (click)="goToComponent('tabs/courses-inscript')">
+                  <ion-card-title class="font-size-title-card">{{this.dashboardData.enrolled_course_count}}</ion-card-title>
+                  <ion-card-subtitle class="excritorio-text-low">Mis cursos</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card color="warning" class="card-dashboard" (click)="goToComponent('tabs/courses-inscript')">
+                <ion-card-header class="card-courses">
+                  <ion-card-title class="font-size-title-card">{{this.dashboardData.active_course_count}}</ion-card-title>
+                  <ion-card-subtitle class="excritorio-text-low">Cursos activos</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card color="warning" class="card-dashboard" (click)="goToComponent('tabs/courses-inscript')">
+                <ion-card-header class="card-courses">
+                  <ion-card-title class="font-size-title-card">{{this.dashboardData.completed_course_count}}</ion-card-title>
+                  <ion-card-subtitle class="excritorio-text-low">Cursos completos</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6">
+              <ion-card color="warning" class="card-dashboard" (click)="goToComponent('tabs/list-wish')">
+                <ion-card-header class="card-courses">
+                  <ion-card-title class="font-size-title-card">{{this.dashboardData.wish_course_count}}</ion-card-title>
+                  <ion-card-subtitle class="excritorio-text-low">Mis favoritos</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <!--
+    </ion-accordion>
+-->
+    <!--
+    <ion-accordion value="second">
+      <ion-item slot="header" color="primary">
+        <ion-label>Mis cursos</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid *ngFor="let itemCourse of list_enrolled_courses;">
+          <ion-row nowrap class="forecast_container">
+
+            <ion-col class="font-list-courses duration-course">
+              <ion-card color="secondary" class="card-list-courses">
+                <ion-card-header class="card-courses-list">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+
+            <ion-col class="font-list-courses title-course">
+              <ion-card color="secondary" class="card-list-courses">
+                <ion-card-header class="card-courses-list">
+                  <ion-card-subtitle>{{itemCourse.post_title}}</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+
+            <ion-col class="font-list-courses complete-course">
+              <ion-card color="secondary" class="card-list-courses">
+                <ion-card-header class="card-courses-list card-list-center">
+                  <ion-card-subtitle>0/0 <br> {{itemCourse.course_completed_percentage}} completado</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-accordion>
+  -->
+
+  <!--
+    <ion-accordion value="second">
+      <ion-item slot="header" color="primary">
+        <ion-label>Mis cursos</ion-label>
+      </ion-item>
+      -->
+      <div *ngIf="list_courses_show.length > 0" style="padding-top: 0px !important; padding-bottom: 0px !important; ">
+        <ion-grid style="padding-top: 0px !important; padding-bottom: 0px !important;">
+          <ion-text style="font-size: 13px;">
+            <ion-grid style="height: 40px !important;">
+              <ion-row>
+                <ion-col size="8">
+                  <ion-item color="primary">
+                  <h6 class="text-justify jost-font"  style="font-size: 18px; color: #111111;"><b>Cursos populares</b></h6>
+                </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-item color="primary" style="font-size: 16px !important; text-align: right;" (click)="goToComponent('tabs/courses')">
+                    <span color="warning" style="color: #ff6600;font-size: 12px !important; margin-top: 10px;">Ver mas ></span>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-text>
+          <ion-row nowrap class="forecast_container">
+            <ng-container *ngFor="let course of list_courses_show; let i = index">
+            <ion-col *ngIf="i <= 3" class="font-list-courses recomend-to-me-card">
+              <ion-card style="border-radius: 15px !important;" color="light">
+                <div style="display:inline-block;" class="conteiner-mg" (click)="viewCourse(course)">
+                  <img height="180px" width="100%" class="img-size-rend" [src]="course.thumbnail_url" />
+                </div>
+                <ion-card-content style="font-size: 12px !important; padding: 5px !important;">
+                  <div style="display:inline-block;">
+                    <ion-item color="light">
+                      <ion-label style="color: #f08904; font-size: 12px;">
+                        {{course?.course_tag[0]?.name}}
+                      </ion-label>
+                      <!--
+                      <ion-text style="font-size: 12px;">
+                          <span style="color: #ff6600;" *ngIf="course?.additional_info?.course_level[0] == 'all_levels'">Todos los niveles</span>
+                          <span style="color: #ff6600;" *ngIf="course?.additional_info?.course_level[0] == 'beginner'">Principiante</span>
+                          <span style="color: #ff6600;" *ngIf="course?.additional_info?.course_level[0] == 'intermediate'">Intermedio</span>
+                      </ion-text>
+                    -->
+                      <ion-icon style="font-size: 19px !important;" name="bookmark-outline" slot="end" color="warning" *ngIf="course?.favorite != true" (click)="addWishList(course, i)"></ion-icon>
+                      <ion-icon style="font-size: 19px !important;" name="bookmark" slot="end" color="warning" *ngIf="course?.favorite == true" (click)="deleteWishList(course, i)"></ion-icon>
+                      <br>
+                    </ion-item>
+                    <ion-item color="light" style="margin-bottom: 5px;">
+                      <ion-text (click)="viewCourse(course)">
+                        <span style="font-size: 15px;"><b class="jost-font" style="text-align: justify !important;">{{course?.post_title}}</b></span><br><br>
+                        <ion-label style="font-size: 15px; color: #fabe00;"><b *ngIf="course.price == false" class="jost-font" style="text-align: justify !important;">Gratis</b> <b *ngIf="course.price != false" class="jost-font" style="text-align: justify !important;">$ {{course.price}} <span style="font-size: 11px; color: black">|</span></b> <ion-icon name="star" style="font-size: 13px; color: #fabe00;"></ion-icon><span style="font-size: 11px; color: #f0f0f0 !important;"> {{course?.ratings?.rating_avg}} <b>|</b> {{course?.additional_info?.course_duration[0].hours}} h {{course?.additional_info?.course_duration[0].minutes}} m</span></ion-label>
+                    </ion-text>
+                    </ion-item>
+                  </div>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ng-container>
+          </ion-row>
+            
+        </ion-grid>
+      </div>
+
+
+      <div *ngIf="list_enrolled_courses.length > 0" style="padding-top: 0px !important; padding-bottom: 0px !important;">
+        <ion-grid style="padding-top: 0px !important; padding-bottom: 0px !important;">
+          <ion-text style="font-size: 13px;">
+            <ion-grid style="height: 40px !important;">
+              <ion-row>
+                <ion-col size="8">
+                  <ion-item color="primary">
+                  <h6 class="text-justify jost-font"  style="font-size: 18px; color: #111111;"><b>Mis cursos</b></h6>
+                </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-item color="primary" style="font-size: 16px !important; text-align: right;" (click)="goToComponent('tabs/courses-inscript')">
+                    <span color="warning" style="color: #ff6600;font-size: 12px !important; margin-top: 10px;">Ver mas ></span>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-text>
+          <ion-row nowrap class="forecast_container">
+            <ng-container *ngFor="let itemCourse of list_enrolled_courses; let i = index">
+            <ion-col *ngIf="i <= 3" class="font-list-courses recomend-to-me-card">
+              <ion-card style="border-radius: 15px !important;" color="light" (click)="viewCourseData(itemCourse)" >
+                <img height="180px" width="100%" class="img-size-rend" [src]="itemCourse.thumbnail_url" />
+                <ion-card-header>
+                  <ion-card-title><b>{{itemCourse.post_title}}</b></ion-card-title>
+                </ion-card-header>
+                <ion-card-content style="font-size: 12px !important;">
+                  Progreso: {{itemCourse.course_completed_percentage}}
+                  <br>
+                  <ion-progress-bar value="{{itemCourse.course_completed_percentage_decimal}}" color="warning"></ion-progress-bar>
+                  <br>
+                  {{itemCourse.post_date}}
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ng-container>
+          </ion-row>
+            
+        </ion-grid>
+      </div>
+      <!--
+    </ion-accordion>
+
+
+  </ion-accordion-group>
+  -->
+</ion-content>
